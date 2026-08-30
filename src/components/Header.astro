@@ -1,0 +1,118 @@
+---
+import { siteContent } from '../content/fallback';
+import TopBar from './TopBar.astro';
+---
+
+<TopBar />
+<header class="sticky top-0 z-50 border-b border-brand-900/10 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center">
+      <img src="/img/logo-emcl.png" alt="EMCL - Estándares Mineros Chile" class="h-[58px] w-auto" />
+    </a>
+
+    <nav class="hidden gap-8 text-base font-medium text-brand-900 md:flex">
+      {siteContent.nav.map((item) => (
+        <a href={item.href} class="transition hover:text-brand-accent">{item.label}</a>
+      ))}
+    </nav>
+
+    <a
+      href="/contacto"
+      class="hidden rounded-full bg-brand-accent px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-accent-light md:inline-block"
+    >
+      Contáctanos
+    </a>
+
+    <!-- Botón hamburguesa (solo mobile) -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+    >
+      <span class="block h-0.5 w-6 bg-brand-900"></span>
+      <span class="block h-0.5 w-6 bg-brand-900"></span>
+      <span class="block h-0.5 w-6 bg-brand-900"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Fondo oscuro detrás del panel -->
+<div
+  id="mobile-menu-backdrop"
+  class="pointer-events-none fixed inset-0 z-40 bg-brand-900/50 opacity-0 backdrop-blur-sm transition-opacity duration-300 md:hidden"
+></div>
+
+<!-- Panel lateral -->
+<div
+  id="mobile-menu"
+  class="fixed inset-y-0 right-0 z-50 flex h-[100dvh] w-[78%] max-w-xs translate-x-full flex-col bg-white/95 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-out md:hidden"
+>
+  <div class="flex items-center justify-between border-b border-brand-900/10 px-6 py-5">
+    <img src="/img/logo-emcl.png" alt="EMCL" class="h-9 w-auto" />
+    <button
+      id="mobile-menu-close"
+      type="button"
+      aria-label="Cerrar menú"
+      class="flex h-9 w-9 items-center justify-center rounded-full text-brand-900 transition hover:bg-brand-900/5"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex flex-1 flex-col gap-1 overflow-y-auto px-6 py-8">
+    {siteContent.nav.map((item) => (
+      <a
+        href={item.href}
+        class="mobile-nav-link border-b border-brand-900/5 py-3.5 text-base font-medium text-brand-900 transition hover:text-brand-accent"
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="border-t border-brand-900/10 p-6">
+    <a
+      href="/contacto"
+      class="mobile-nav-link block rounded-full bg-brand-accent px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-brand-700"
+    >
+      Contáctanos
+    </a>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const menu = document.getElementById('mobile-menu');
+
+  if (toggle && menu && backdrop && closeBtn) {
+    const links = menu.querySelectorAll('.mobile-nav-link');
+    let open = false;
+
+    function setOpen(next: boolean) {
+      open = next;
+      toggle!.setAttribute('aria-expanded', String(open));
+
+      if (open) {
+        menu!.classList.remove('translate-x-full');
+        backdrop!.classList.remove('pointer-events-none', 'opacity-0');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        menu!.classList.add('translate-x-full');
+        backdrop!.classList.add('opacity-0');
+        setTimeout(() => backdrop!.classList.add('pointer-events-none'), 300);
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    toggle.addEventListener('click', () => setOpen(true));
+    closeBtn.addEventListener('click', () => setOpen(false));
+    backdrop.addEventListener('click', () => setOpen(false));
+    links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  }
+</script>

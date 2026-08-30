@@ -1,0 +1,42 @@
+---
+import type { WPService } from '../lib/wp';
+
+interface Props {
+  services: WPService[];
+}
+const { services } = Astro.props;
+---
+
+<section id="servicios" class="bg-slate-50 py-24">
+  <div class="mx-auto max-w-[1400px] px-6">
+  <div class="mb-14 max-w-2xl">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">Servicios</p>
+    <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">Qué hacemos</h2>
+  </div>
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {services.map((service, i) => (
+      <a
+        href={`/servicios/${service.slug}`}
+        class="group block overflow-hidden rounded-2xl border border-brand-900/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+      >
+        {service.image && (
+          <div class="relative h-48 w-full overflow-hidden">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            {i === 0 && <div class="absolute inset-0 bg-brand-600/40 mix-blend-multiply"></div>}
+          </div>
+        )}
+        <div class="p-8">
+          <h3 class="mb-3 text-xl font-semibold text-brand-900 group-hover:text-brand-accent">{service.title}</h3>
+          <p class="text-brand-900/70">{service.excerpt}</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-brand-accent">Ver más →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PageBanner from '../components/PageBanner.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ValuesSection from '../components/ValuesSection.astro';
+import WomenLeadershipSection from '../components/WomenLeadershipSection.astro';
+import PillarsSection from '../components/PillarsSection.astro';
+import Footer from '../components/Footer.astro';
+import { getSeoMeta } from '../lib/wp';
+
+const seo = await getSeoMeta('empresa');
+---
+
+<Layout seo={seo}>
+  <Header />
+  <PageBanner
+    eyebrow="Empresa"
+    title="Ciencia, calidad y liderazgo al servicio de la minería"
+    description="Especializada en comercialización y elaboración de materiales de referencia certificados para la industria minera chilena."
+    image="/img/nuestra-empresa.jpg"
+  />
+  <AboutSection />
+  <WomenLeadershipSection />
+  <PillarsSection />
+  <ValuesSection />
+  <Footer />
+</Layout>

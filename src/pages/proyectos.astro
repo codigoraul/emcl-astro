@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PageBanner from '../components/PageBanner.astro';
+import ReferenceStandardsServiceSection from '../components/ReferenceStandardsServiceSection.astro';
+import Footer from '../components/Footer.astro';
+import { getSeoMeta } from '../lib/wp';
+
+const seo = await getSeoMeta('proyectos');
+---
+
+<Layout seo={seo}>
+  <Header />
+  <PageBanner
+    eyebrow="Proyectos"
+    title="Presencia en la industria minera"
+    description="Trabajamos junto a empresas de exploración y minería en Latinoamérica para asegurar la calidad y trazabilidad de sus procesos."
+    image="/img/slider/slide-3.jpg"
+  />
+  <ReferenceStandardsServiceSection />
+  <Footer />
+</Layout>

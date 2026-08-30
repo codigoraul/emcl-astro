@@ -1,0 +1,42 @@
+---
+import { fallbackAbout, fallbackCompanyIntro } from '../content/fallback';
+const { purpose, mission, vision, reach, statement } = fallbackAbout;
+const { paragraphs, audiences } = fallbackCompanyIntro;
+const cards = [purpose, mission, vision, reach];
+---
+
+<section id="empresa" class="mx-auto max-w-[1400px] px-6 py-24">
+  <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">Empresa</p>
+      <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">Nuestra Empresa</h2>
+
+      <div class="mt-5 space-y-4 text-brand-900/80">
+        {paragraphs.map((p) => (
+          <p set:html={p.replace(/materiales de referencia certificados/i, '<strong>materiales de referencia certificados</strong>')} />
+        ))}
+      </div>
+
+      <ul class="mt-5 space-y-2">
+        {audiences.map((a) => (
+          <li class="flex items-center gap-2 text-brand-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-logo-blue"></span>
+            {a}
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-8 border-l-4 border-brand-logo-blue pl-5 text-base font-medium leading-snug text-brand-900/90">
+        {statement}
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-6">
+      {cards.map((card) => (
+        <div class="rounded-xl bg-slate-50 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wide text-brand-logo-blue">{card.label}</p>
+          <p class="mt-2 text-sm text-brand-900/80">{card.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

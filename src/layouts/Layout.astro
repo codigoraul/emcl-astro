@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import type { WPSeoMeta } from '../lib/wp';
+
+interface Props {
+  seo: WPSeoMeta;
+}
+
+const { seo } = Astro.props;
+const canonical = seo.canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={canonical} />
+    {seo.ogImage && <meta property="og:image" content={seo.ogImage} />}
+    <meta property="og:locale" content="es_CL" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+
+    <!--
+      Nota SEO: cuando WordPress headless esté conectado con Yoast SEO REST API,
+      este bloque <head> se reemplaza/complementa con el `yoast_head_json` que
+      entrega la API (incluye JSON-LD de Organization, breadcrumbs, etc.) para
+      no perder ninguna optimización que Yoast ya calcula.
+    -->
+  </head>
+  <body class="bg-white text-brand-900 antialiased">
+    <slot />
+  </body>
+</html>

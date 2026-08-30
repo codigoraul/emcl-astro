@@ -1,0 +1,40 @@
+---
+const clients = [
+  { name: 'BHP', file: 'bhp-spence.png' },
+  { name: 'Minera Escondida', file: 'escondida.png' },
+  { name: 'Codelco', file: 'codelco.png' },
+  { name: 'Minera Centinela', file: 'centinela.jpg' },
+  { name: 'Minera Antucoya', file: 'antucoya.jpg' },
+  { name: 'Minera Zaldívar', file: 'zaldivar.png' },
+  { name: 'Mantos Blancos', file: 'mantos-blancos.jpg' },
+  { name: 'Mantos Verde', file: 'mantos-verde.jpg' },
+  { name: 'Minera El Peñón', file: 'penon.png' },
+  { name: 'Las Bambas', file: 'las-bambas.jpg' },
+  { name: 'Belo Sun', file: 'belo-sun.png' },
+  { name: 'Biolantánidos', file: 'biolantanidos.jpg' },
+  { name: 'Puro Cobre', file: 'purocobre.png' },
+  { name: 'EMSA', file: 'emsa.jpg' },
+  { name: 'HMC', file: 'hmc.avif' },
+];
+---
+
+<section class="mx-auto max-w-[1400px] px-6 py-24">
+  <div class="mb-12 max-w-2xl">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">Referencias</p>
+    <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">Empresas de la industria minera</h2>
+    <p class="mt-4 text-brand-900/60">
+      {/* TODO Raul: confirmar el texto exacto de esta sección (¿clientes directos, referencias del
+      sector, proyectos en curso?) antes de publicar — por ahora se muestran los logos que ya
+      tenías en tus archivos. */}
+      Empresas y proyectos mineros de la región con los que EMCL se relaciona.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
+    {clients.map((c) => (
+      <div class="flex h-20 items-center justify-center rounded-lg bg-slate-50 p-4 grayscale transition hover:grayscale-0">
+        <img src={`/img/clientes/${c.file}`} alt={c.name} class="max-h-12 w-auto object-contain" loading="lazy" />
+      </div>
+    ))}
+  </div>
+</section>

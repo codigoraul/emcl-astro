@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PageBanner from '../components/PageBanner.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ReferenceMaterialsSection from '../components/ReferenceMaterialsSection.astro';
+import InterlabSection from '../components/InterlabSection.astro';
+import Footer from '../components/Footer.astro';
+import { getServices, getSeoMeta } from '../lib/wp';
+
+const seo = await getSeoMeta('servicios');
+const services = await getServices();
+---
+
+<Layout seo={seo}>
+  <Header />
+  <PageBanner
+    eyebrow="Servicios"
+    title="Qué hacemos"
+    description="Materiales de Referencia Certificados, asesoría experta y soluciones para metales críticos, con trazabilidad metrológica de punta a punta."
+    image="/img/slider/slide-2.jpg"
+  />
+  <ServicesGrid services={services} />
+  <ReferenceMaterialsSection />
+  <InterlabSection />
+  <Footer />
+</Layout>

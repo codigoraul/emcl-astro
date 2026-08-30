@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PageBanner from '../components/PageBanner.astro';
+import ContactFormSection from '../components/ContactFormSection.astro';
+import Footer from '../components/Footer.astro';
+import { getContactInfo, getSeoMeta } from '../lib/wp';
+
+const seo = await getSeoMeta('contacto');
+const contact = await getContactInfo();
+---
+
+<Layout seo={seo}>
+  <Header />
+  <PageBanner
+    eyebrow="Contacto"
+    title="Conversemos sobre su proyecto"
+    description="Escríbenos y un especialista de EMCL te responderá a la brevedad."
+    image="/img/slider/slide-1.jpg"
+  />
+  <ContactFormSection contact={contact} />
+  <Footer />
+</Layout>

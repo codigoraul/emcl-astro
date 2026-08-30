@@ -1,0 +1,14 @@
+---
+import { fallbackValueProps } from '../content/fallback';
+---
+
+<section class="bg-brand-900 py-16 text-white">
+  <div class="mx-auto grid max-w-[1400px] gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4">
+    {fallbackValueProps.map((item) => (
+      <div class="text-center">
+        <h3 class="text-sm font-bold uppercase tracking-wide text-brand-logo-blue">{item.title}</h3>
+        <p class="mt-2 text-sm text-white/60">{item.description}</p>
+      </div>
+    ))}
+  </div>
+</section>
