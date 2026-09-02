@@ -1,6 +1,8 @@
 ---
-import { siteContent } from '../content/fallback';
+import { siteContent, fallbackServices } from '../content/fallback';
 import TopBar from './TopBar.astro';
+
+const services = fallbackServices;
 ---
 
 <TopBar />
@@ -10,9 +12,35 @@ import TopBar from './TopBar.astro';
       <img src="/img/logo-emcl.png" alt="EMCL - Estándares Mineros Chile" class="h-[58px] w-auto" />
     </a>
 
-    <nav class="hidden gap-8 text-base font-medium text-brand-900 md:flex">
+    <nav class="hidden items-center gap-8 text-base font-medium text-brand-900 md:flex">
       {siteContent.nav.map((item) => (
-        <a href={item.href} class="transition hover:text-brand-accent">{item.label}</a>
+        item.label === 'Servicios' ? (
+          <div class="group relative">
+            <a href={item.href} class="inline-flex items-center gap-1.5 leading-none transition hover:text-brand-accent">
+              <span>{item.label}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:rotate-180">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </a>
+            <div class="invisible absolute left-0 top-full z-50 w-max min-w-[22rem] max-w-sm translate-y-2 opacity-0 transition-all duration-200 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              <div class="mt-2 overflow-hidden rounded-2xl bg-brand-900 p-2 shadow-2xl shadow-brand-900/20 ring-1 ring-white/10">
+                {services.map((service) => (
+                  <a
+                    href={`/servicios/${service.slug}`}
+                    class="group/item flex items-center justify-between gap-3 whitespace-nowrap rounded-xl px-4 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10 hover:text-white"
+                  >
+                    <span>{service.title}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 shrink-0 -translate-x-1 text-brand-logo-blue opacity-0 transition group-hover/item:translate-x-0 group-hover/item:opacity-100">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a href={item.href} class="transition hover:text-brand-accent">{item.label}</a>
+        )
       ))}
     </nav>
 
@@ -65,12 +93,47 @@ import TopBar from './TopBar.astro';
 
   <nav class="flex flex-1 flex-col gap-1 overflow-y-auto px-6 py-8">
     {siteContent.nav.map((item) => (
-      <a
-        href={item.href}
-        class="mobile-nav-link border-b border-brand-900/5 py-3.5 text-base font-medium text-brand-900 transition hover:text-brand-accent"
-      >
-        {item.label}
-      </a>
+      item.label === 'Servicios' ? (
+        <div class="mobile-services-group border-b border-brand-900/5">
+          <button
+            type="button"
+            class="mobile-services-trigger flex w-full items-center justify-between py-3.5 text-base font-medium text-brand-900 transition hover:text-brand-accent"
+          >
+            {item.label}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mobile-services-chevron h-4 w-4 shrink-0 transition-transform duration-200">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </button>
+          <div class="mobile-services-panel hidden flex-col gap-1 pb-4 pl-1">
+            <a
+              href={item.href}
+              class="mobile-nav-link flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-brand-accent transition hover:bg-brand-accent/10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 shrink-0">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              Ver todos los servicios
+            </a>
+            <div class="my-1 border-t border-brand-900/5"></div>
+            {services.map((service) => (
+              <a
+                href={`/servicios/${service.slug}`}
+                class="mobile-nav-link flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm leading-snug text-brand-900/75 transition hover:bg-brand-900/5 hover:text-brand-accent"
+              >
+                <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-logo-blue"></span>
+                {service.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <a
+          href={item.href}
+          class="mobile-nav-link border-b border-brand-900/5 py-3.5 text-base font-medium text-brand-900 transition hover:text-brand-accent"
+        >
+          {item.label}
+        </a>
+      )
     ))}
   </nav>
 
@@ -89,6 +152,15 @@ import TopBar from './TopBar.astro';
   const closeBtn = document.getElementById('mobile-menu-close');
   const backdrop = document.getElementById('mobile-menu-backdrop');
   const menu = document.getElementById('mobile-menu');
+
+  const servicesTrigger = document.querySelector('.mobile-services-trigger');
+  const servicesPanel = document.querySelector('.mobile-services-panel');
+  const servicesChevron = document.querySelector('.mobile-services-chevron');
+  servicesTrigger?.addEventListener('click', () => {
+    servicesPanel?.classList.toggle('hidden');
+    servicesPanel?.classList.toggle('flex');
+    servicesChevron?.classList.toggle('rotate-180');
+  });
 
   if (toggle && menu && backdrop && closeBtn) {
     const links = menu.querySelectorAll('.mobile-nav-link');

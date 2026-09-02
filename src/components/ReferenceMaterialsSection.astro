@@ -2,7 +2,18 @@
 import { fallbackReferenceMaterials } from '../content/fallback';
 ---
 
-<section id="materiales" class="mx-auto max-w-[1400px] px-6 py-24">
+<section id="materiales" class="relative overflow-hidden py-24">
+  <div class="absolute inset-0">
+    <img
+      src="/img/bg-proceso-mineral.webp"
+      alt=""
+      class="h-full w-full object-cover opacity-40"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/75 to-white/20"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1400px] px-6">
   <div class="mb-14 max-w-2xl">
     <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">Catálogo</p>
     <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">Materiales de Referencia</h2>
@@ -26,7 +37,8 @@ import { fallbackReferenceMaterials } from '../content/fallback';
     ))}
   </div>
 
-  <p class="mt-6 text-xs text-brand-900/40">
-    * Valores referenciales del catálogo actual. Cifras y certificados oficiales sujetos a confirmación.
-  </p>
+    <p class="mt-6 text-xs text-brand-900/40">
+      * Valores referenciales del catálogo actual. Cifras y certificados oficiales sujetos a confirmación.
+    </p>
+  </div>
 </section>

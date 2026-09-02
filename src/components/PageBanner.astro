@@ -4,14 +4,15 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  objectPosition?: string;
 }
-const { eyebrow, title, description, image } = Astro.props;
+const { eyebrow, title, description, image, objectPosition = 'center' } = Astro.props;
 ---
 
 <section class="relative flex h-[264px] items-center overflow-hidden text-white">
   {image ? (
     <>
-      <img src={image} alt={title} class="absolute inset-0 h-full w-full object-cover" />
+      <img src={image} alt={title} class="absolute inset-0 h-full w-full object-cover" style={`object-position: ${objectPosition};`} />
       <div class="absolute inset-0 bg-gradient-to-r from-brand-900/85 via-brand-900/60 to-brand-900/30"></div>
     </>
   ) : (

@@ -345,21 +345,21 @@ export const fallbackReferenceMaterials = [
  */
 export const fallbackSlides = [
   {
-    image: '/img/slider/slide-1.jpg',
+    image: '/img/slider/slide-1.webp',
     title: 'Trazabilidad y Cumplimiento ISO en Laboratorio',
     text: 'Asegure la fiabilidad de sus resultados con trazabilidad al Sistema Internacional (SI) y cumplimiento de la Norma ISO 17034.',
     cta: 'Saber más',
     href: '/servicios',
   },
   {
-    image: '/img/slider/slide-2.jpg',
+    image: '/img/slider/slide-2.webp',
     title: 'Materiales de Referencia Certificados (CRM) para la Minería Chilena',
     text: 'Suministro de CRMs para cobre, litio, oro y otros metales críticos. Garantizamos precisión y baja incertidumbre para sus análisis.',
     cta: 'Saber más',
     href: '/servicios',
   },
   {
-    image: '/img/slider/slide-3.jpg',
+    image: '/img/slider/slide-3.webp',
     title: 'Aseguramiento y Control de Calidad (QA/QC) Minero',
     text: 'Soluciones científicas para programas de QA/QC en exploración y operación, validando datos geoquímicos. La precisión de hoy es la competitividad de mañana.',
     cta: 'Saber más',

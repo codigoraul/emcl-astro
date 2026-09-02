@@ -9,8 +9,8 @@ import { fallbackSlides } from '../content/fallback';
       class:list={[i === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0']}
       data-index={i}
     >
-      <img src={slide.image} alt={slide.title} class="absolute inset-0 h-full w-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+      <img src={slide.image} alt={slide.title} class="absolute inset-0 h-full w-full object-cover" style={i === 2 ? "object-position: 50% 15%;" : "object-position: 50% 50%;"} />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-900/50 via-brand-900/25 to-transparent"></div>
       <div class="relative mx-auto flex h-full max-w-[1400px] items-center px-6">
         <div class="max-w-xl">
           <h1 class="hero-anim text-3xl font-bold leading-tight md:text-5xl" style="animation-delay: 0.15s;">{slide.title}</h1>
