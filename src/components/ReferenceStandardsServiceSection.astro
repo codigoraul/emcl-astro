@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/url';
 const checkIcon = 'm4.5 12.75 6 6 9-13.5';
 ---
 
@@ -42,7 +43,7 @@ const checkIcon = 'm4.5 12.75 6 6 9-13.5';
 
   <div class="relative flex h-[200px] items-center justify-center overflow-hidden text-center text-white md:h-[240px]">
     <img
-      src="/img/proyectos/estandares-referencia-banner.jpg"
+      src={withBase('/img/proyectos/estandares-referencia-banner.jpg')}
       alt="Cordillera y glaciar"
       class="absolute inset-0 h-full w-full object-cover"
     />
@@ -96,8 +97,8 @@ const checkIcon = 'm4.5 12.75 6 6 9-13.5';
 
         <h3 class="mt-8 text-lg font-bold text-brand-900">Respaldo Profesional</h3>
         <p class="mt-4 text-sm text-brand-900/75">
-          Contamos con la experiencia y supervisión del equipo técnico de EMCL para garantizar resultados
-          confiables en cada etapa del proceso.
+          Contamos con la experiencia y supervisión del Ph.D., P.Geo Armando Simon, experto reconocido en
+          Geología y Consultoría, asegurando estándares de calidad internacional.
         </p>
       </div>
 

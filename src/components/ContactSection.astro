@@ -15,11 +15,11 @@ const { contact } = Astro.props;
       <div class="mt-10 grid gap-6 text-white/80 md:grid-cols-3">
         <div>
           <p class="text-xs uppercase tracking-wide text-white/50">Teléfono</p>
-          <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="mt-1 block text-lg font-medium text-white hover:text-brand-accent-light">
+          <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="mt-1 block text-lg font-bold text-white hover:text-brand-accent-light">
             {contact.phone}
           </a>
           {contact.phoneSecondary && (
-            <a href={`tel:${contact.phoneSecondary.replace(/\s/g, '')}`} class="mt-1 block text-sm font-medium text-white/70 hover:text-brand-accent-light">
+            <a href={`tel:${contact.phoneSecondary.replace(/\s/g, '')}`} class="mt-1 block text-sm font-bold text-white/70 hover:text-brand-accent-light">
               {contact.phoneSecondary}
             </a>
           )}

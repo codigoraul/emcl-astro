@@ -1,11 +1,12 @@
 ---
 import { fallbackReferenceMaterials } from '../content/fallback';
+import { withBase } from '../lib/url';
 ---
 
 <section id="materiales" class="relative overflow-hidden py-24">
   <div class="absolute inset-0">
     <img
-      src="/img/bg-proceso-mineral.webp"
+      src={withBase('/img/bg-proceso-mineral.webp')}
       alt=""
       class="h-full w-full object-cover opacity-40"
       loading="lazy"
@@ -16,9 +17,9 @@ import { fallbackReferenceMaterials } from '../content/fallback';
   <div class="relative mx-auto max-w-[1400px] px-6">
   <div class="mb-14 max-w-2xl">
     <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">Catálogo</p>
-    <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">Materiales de Referencia</h2>
+    <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">Materiales de Referencia Certificados (MRC)</h2>
     <p class="mt-4 text-brand-900/70">
-      Ejemplos de nuestros Materiales de Referencia certificados, con trazabilidad metrológica
+      Ejemplos de nuestros Materiales de Referencia Certificados (MRC), con trazabilidad metrológica
       para respaldar análisis confiables en laboratorio e industria minera.
     </p>
   </div>
