@@ -9,14 +9,14 @@ export const fallbackServices: WPService[] = [
   {
     id: 'crms',
     slug: 'materiales-de-referencia-certificados',
-    title: 'Materiales de Referencia Certificados (CRMs)',
+    title: 'Materiales de Referencia Certificados (MRC)',
     excerpt:
       'Desarrollo y suministro de Materiales de Referencia Certificados para el sector minero chileno.',
     image: '/img/servicios/crms.jpg',
     order: 1,
     content: [
-      'Somos especialistas en el desarrollo y suministro de Materiales de Referencia Certificados (CRM) para el sector minero chileno, con trazabilidad metrológica al Sistema Internacional (SI) y cumplimiento de la Norma ISO 17034.',
-      'Nuestros CRMs respaldan análisis confiables de cobre, litio, oro y otros metales críticos, con procesos de caracterización, evaluación estadística y certificación que garantizan valores de referencia precisos y su incertidumbre asociada.',
+      'Somos especialistas en el desarrollo y suministro de Materiales de Referencia Certificados (MRC) para el sector minero chileno, con trazabilidad metrológica al Sistema Internacional (SI) y cumplimiento de la Norma ISO 17034.',
+      'Nuestros MRC respaldan análisis confiables de cobre, litio, oro y otros metales críticos, con procesos de caracterización, evaluación estadística y certificación que garantizan valores de referencia precisos y su incertidumbre asociada.',
       'Ideal para laboratorios de exploración, operación minera y control de calidad que necesitan validar sus métodos analíticos frente a un estándar confiable.',
     ],
   },
@@ -68,6 +68,10 @@ export const fallbackContact: WPContactInfo = {
   region: 'Región de Coquimbo',
   // Segundo teléfono visto en el afiche
   phoneSecondary: '+56 9 7967 1794',
+  people: [
+    { name: 'Marilyn Martín', email: 'marilyn.martin@emcl.cl', phone: '+56 9 7967 1794' },
+    { name: 'M. Castillo', email: 'mcastillo@emcl.cl', phone: '+56 9 9533 3306' },
+  ],
   socials: [
     { label: 'Facebook', url: '#' },
     { label: 'Instagram', url: 'https://www.instagram.com/emcl.chile/' },
@@ -80,7 +84,7 @@ export const fallbackSeo: Record<string, WPSeoMeta> = {
   home: {
     title: 'EMCL | Materiales de Referencia Certificados para la Minería Chilena',
     description:
-      'EMCL — Estándares Mineros Chile desarrolla y comercializa Materiales de Referencia Certificados (CRMs), con trazabilidad metrológica y cumplimiento de normas internacionales. La precisión de hoy es la competitividad de mañana.',
+      'EMCL — Estándares Mineros Chile desarrolla y comercializa Materiales de Referencia Certificados (MRC), con trazabilidad metrológica y cumplimiento de normas internacionales. La precisión de hoy es la competitividad de mañana.',
   },
   empresa: {
     title: 'Empresa | EMCL — Estándares Mineros Chile',
@@ -353,8 +357,8 @@ export const fallbackSlides = [
   },
   {
     image: '/img/slider/slide-2.webp',
-    title: 'Materiales de Referencia Certificados (CRM) para la Minería Chilena',
-    text: 'Suministro de CRMs para cobre, litio, oro y otros metales críticos. Garantizamos precisión y baja incertidumbre para sus análisis.',
+    title: 'Materiales de Referencia Certificados (MRC) para la Minería Chilena',
+    text: 'Suministro de MRC para cobre, litio, oro y otros metales críticos. Garantizamos precisión y baja incertidumbre para sus análisis.',
     cta: 'Saber más',
     href: '/servicios',
   },
