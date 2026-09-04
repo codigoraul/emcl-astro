@@ -19,7 +19,7 @@ const { contact } = Astro.props;
             {contact.phone}
           </a>
           {contact.phoneSecondary && (
-            <a href={`tel:${contact.phoneSecondary.replace(/\s/g, '')}`} class="mt-1 block text-sm font-bold text-white/70 hover:text-brand-accent-light">
+            <a href={`tel:${contact.phoneSecondary.replace(/\s/g, '')}`} class="mt-1 block text-lg font-bold text-white hover:text-brand-accent-light">
               {contact.phoneSecondary}
             </a>
           )}
