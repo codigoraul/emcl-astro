@@ -8,6 +8,7 @@ import OfrecemosSection from '../components/OfrecemosSection.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import Footer from '../components/Footer.astro';
 import { getServices, getSeoMeta } from '../lib/wp';
+import { withBase } from '../lib/url';
 
 const seo = await getSeoMeta('home');
 const services = await getServices();
@@ -19,7 +20,7 @@ const services = await getServices();
   <CompanyIntroSection />
   <ServicesGrid services={services} />
   <div class="mx-auto -mt-8 max-w-[1400px] px-6 pb-16 text-center">
-    <a href="/servicios" class="text-sm font-semibold text-brand-accent hover:text-brand-700">
+    <a href={withBase('/servicios')} class="text-sm font-semibold text-brand-accent hover:text-brand-700">
       Ver todos los servicios y el proceso completo →
     </a>
   </div>

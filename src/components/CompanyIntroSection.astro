@@ -1,11 +1,12 @@
 ---
 import { fallbackCompanyIntro } from '../content/fallback';
+import { withBase } from '../lib/url';
 const { eyebrow, heading, image, paragraphs, audiences } = fallbackCompanyIntro;
 ---
 
 <section class="mx-auto max-w-[1400px] px-6 py-20">
   <div class="grid gap-6 lg:grid-cols-2 lg:items-center">
-    <img src={image} alt={heading} class="w-[82%] rounded-md object-cover" />
+    <img src={withBase(image)} alt={heading} class="w-[82%] rounded-md object-cover" />
     <div class="lg:-ml-[84px]">
       <p class="text-sm font-bold uppercase tracking-[0.15em] text-brand-600">{eyebrow}</p>
       <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">{heading}</h2>

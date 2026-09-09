@@ -1,5 +1,6 @@
 ---
 import { fallbackWomenLeadership, fallbackCapabilities } from '../content/fallback';
+import { withBase } from '../lib/url';
 const { badge, heading, intro, closing } = fallbackWomenLeadership;
 ---
 
@@ -28,7 +29,7 @@ const { badge, heading, intro, closing } = fallbackWomenLeadership;
 
     <div class="relative overflow-hidden rounded-2xl">
       <img
-        src="/img/equipo-emcl.png"
+        src={withBase('/img/equipo-emcl.webp')}
         alt="Equipo EMCL — Somos mujeres que lideran, inspiran y generan impacto"
         class="w-full object-cover"
       />

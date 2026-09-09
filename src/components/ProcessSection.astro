@@ -1,5 +1,6 @@
 ---
 import { fallbackProcess } from '../content/fallback';
+import { withBase } from '../lib/url';
 const { eyebrow, heading, steps } = fallbackProcess;
 
 const stepIcons = [
@@ -15,7 +16,7 @@ const stepIcons = [
 <section id="proceso" class="relative overflow-hidden bg-gray-100 py-24 text-gray-900">
   <div class="absolute inset-0">
     <img
-      src="/img/bg-montana.webp"
+      src={withBase('/img/bg-montana.webp')}
       alt=""
       class="h-full w-full object-cover object-top opacity-60"
       loading="lazy"

@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import PageBanner from '../components/PageBanner.astro';
+import Footer from '../components/Footer.astro';
+import { getSeoMeta } from '../lib/wp';
+
+const seo = await getSeoMeta('solicitud-especificaciones');
+---
+
+<Layout seo={seo}>
+  <div class="print:hidden">
+    <Header />
+    <PageBanner
+      eyebrow="Registro de Especificaciones"
+      title="Formulario General para Generar Cotización"
+      description="Complete este formulario (RG-001) con las especificaciones técnicas de su solicitud para que preparemos su cotización."
+      image="/img/contacto-bg.webp"
+    />
+  </div>
+
+  <section class="bg-gradient-to-br from-slate-100 via-blue-50/60 to-slate-200 py-16 md:py-24 print:bg-white print:py-4">
+    <div class="mx-auto max-w-[900px] px-6">
+      <h2 class="text-2xl font-bold text-brand-900 md:text-3xl print:mt-0">Formulario General para Generar Cotización</h2>
+      <p class="mb-8 mt-2 text-xs uppercase tracking-wide text-brand-900/50">Código RG-001 · Revisión 00</p>
+
+      <form id="specs-form" class="rounded-2xl bg-white shadow-sm print:rounded-none print:shadow-none" novalidate>
+        <div class="divide-y divide-brand-900/10 px-6 md:px-10">
+
+          <div class="py-6">
+            <label for="cliente" class="mb-1.5 block text-sm font-medium text-brand-900">1. Cliente *</label>
+            <input type="text" id="cliente" name="cliente" required placeholder="Nombre de la empresa o faena (ej. Minera XYZ)"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </div>
+
+          <div class="py-6">
+            <label for="contacto_cliente" class="mb-1.5 block text-sm font-medium text-brand-900">2. Contacto Cliente * <span class="font-normal text-brand-900/50">(nombre de la persona de contacto en la empresa)</span></label>
+            <input type="text" id="contacto_cliente" name="contacto_cliente" required placeholder="Nombre del contacto (ej. Juan Pérez)"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </div>
+
+          <fieldset class="border-0 p-0 py-6">
+            <legend class="mb-2 text-sm font-semibold text-brand-900">3. Tipo de Digestión</legend>
+            <div class="flex flex-wrap gap-6 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="radio" name="digestion" value="Acida" /> Digestión Ácida</label>
+              <label class="flex items-center gap-2"><input type="radio" name="digestion" value="Fusion" /> Digestión por Fusión</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="border-0 p-0 py-6">
+            <legend class="mb-2 text-sm font-semibold text-brand-900">4. Determinación Final</legend>
+            <div class="flex flex-wrap gap-6 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="checkbox" name="determinacion[]" value="AAE" /> AAE</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="determinacion[]" value="ICP" /> ICP</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="determinacion[]" value="Leco" /> Leco</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="determinacion[]" value="XRF" /> XRF</label>
+            </div>
+          </fieldset>
+
+          <div class="py-6">
+            <label class="flex items-center gap-2 text-sm text-brand-900">
+              <input type="checkbox" name="enviar_protocolos" value="Si" />
+              5. Enviar protocolos de análisis de cada faena y los límites de detección
+            </label>
+          </div>
+
+          <div class="py-6">
+            <label for="granulometria" class="mb-1.5 block text-sm font-medium text-brand-900">6. Granulometría final de la muestra (#Ty)</label>
+            <input type="text" id="granulometria" name="granulometria"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </div>
+
+          <fieldset class="space-y-4 border-0 p-0 py-6">
+            <legend class="mb-2 text-sm font-semibold text-brand-900">7. Envasado final</legend>
+
+            <div class="flex flex-wrap gap-5 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="checkbox" name="envasado[]" value="Bolsa Aluminio" /> Bolsa Aluminio</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="envasado[]" value="Frasco" /> Frasco</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="envasado[]" value="Plastico" /> Plástico</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="envasado[]" value="Sobres papel" /> Sobres papel</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="envasado[]" value="Otro" /> Otro</label>
+            </div>
+            <input type="text" name="envasado_otro" placeholder="Especificar otro tipo de envasado"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+
+            <div class="flex flex-wrap gap-5 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="checkbox" name="sellado[]" value="Sellado Normal" /> Sellado Normal</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="sellado[]" value="Sellado al Vacio" /> Sellado al Vacío</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="sellado[]" value="Sellado Vacio Atmosfera Nitrogeno" /> Sellado Vacío Atmósfera Nitrógeno</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="sellado[]" value="Otro" /> Otro</label>
+            </div>
+            <input type="text" name="sellado_otro" placeholder="Especificar otro tipo de sellado"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+
+            <div>
+              <label for="producto_envasado" class="mb-1.5 block text-sm font-medium text-brand-900">Producto final envasado (grs. o Kgs.)</label>
+              <input type="text" id="producto_envasado" name="producto_envasado"
+                class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+            </div>
+          </fieldset>
+
+          <div class="py-6">
+            <label for="num_laboratorios" class="mb-1.5 block text-sm font-medium text-brand-900">8. Número de Laboratorios Participantes (entre 8 y 10, mínimo 5)</label>
+            <input type="number" id="num_laboratorios" name="num_laboratorios" min="5"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+            <div class="mt-3 flex flex-wrap gap-6 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="checkbox" name="laboratorios[]" value="Nacionales" /> Nacionales</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="laboratorios[]" value="Internacionales" /> Internacionales</label>
+            </div>
+          </div>
+
+          <div class="py-6">
+            <label for="num_replicas" class="mb-1.5 block text-sm font-medium text-brand-900">9. Número de Réplicas a Solicitar a cada Laboratorio (mínimo 3)</label>
+            <input type="number" id="num_replicas" name="num_replicas" min="3"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </div>
+
+          <fieldset class="space-y-3 border-0 p-0 py-6">
+            <legend class="mb-2 text-sm font-semibold text-brand-900">10. Disposición Final</legend>
+            <div class="flex flex-wrap gap-5 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="checkbox" name="disposicion[]" value="Bin Industrial" /> Bin Industrial</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="disposicion[]" value="Tambores" /> Tambores</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="disposicion[]" value="Cajas" /> Cajas</label>
+              <label class="flex items-center gap-2"><input type="checkbox" name="disposicion[]" value="Otro" /> Otro</label>
+            </div>
+            <input type="text" name="disposicion_otro" placeholder="Especificar"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </fieldset>
+
+          <fieldset class="space-y-3 border-0 p-0 py-6">
+            <legend class="mb-2 text-sm font-semibold text-brand-900">11. Transporte</legend>
+            <div class="flex flex-wrap gap-6 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="radio" name="transporte" value="Si" /> Sí</label>
+              <label class="flex items-center gap-2"><input type="radio" name="transporte" value="No" /> No, especificar distancias de faena</label>
+            </div>
+            <input type="text" name="transporte_detalle" placeholder="Especificar"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </fieldset>
+
+          <fieldset class="space-y-3 border-0 p-0 py-6">
+            <legend class="mb-2 text-sm font-semibold text-brand-900">12. Devolución del MR</legend>
+            <div class="flex flex-wrap gap-6 text-sm text-brand-900">
+              <label class="flex items-center gap-2"><input type="radio" name="devolucion_mr" value="Si" /> Sí</label>
+              <label class="flex items-center gap-2"><input type="radio" name="devolucion_mr" value="No" /> No, especificar destino</label>
+            </div>
+            <input type="text" name="devolucion_mr_detalle" placeholder="Especificar"
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </fieldset>
+
+          <div class="py-6">
+            <label for="otros_requisitos" class="mb-1.5 block text-sm font-medium text-brand-900">13. Otros Requisitos</label>
+            <textarea id="otros_requisitos" name="otros_requisitos" rows="5"
+              class="w-full resize-none rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20"></textarea>
+          </div>
+
+          <div class="py-6">
+            <label for="email" class="mb-1.5 block text-sm font-medium text-brand-900">Correo de contacto para respuesta *</label>
+            <input type="email" id="email" name="email" required
+              class="w-full rounded-lg border border-brand-900/15 px-4 py-2.5 text-sm text-brand-900 outline-none transition focus:border-brand-logo-blue focus:ring-2 focus:ring-brand-logo-blue/20" />
+          </div>
+
+        </div>
+
+        <!-- Honeypot anti-spam -->
+        <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label for="website">No llenar este campo</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 border-t border-brand-900/10 px-6 py-6 md:px-10 print:hidden">
+          <button type="submit" id="specs-submit-btn"
+            class="inline-block rounded-full bg-brand-accent px-8 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-brand-700 disabled:opacity-60">
+            Enviar Formulario
+          </button>
+
+          <button type="button" id="specs-print-btn"
+            class="inline-flex items-center gap-1.5 rounded-full border border-brand-900/15 px-4 py-1.5 text-xs font-medium text-brand-900/70 transition hover:border-brand-900/30 hover:bg-brand-900/5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-3.5 w-3.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+            </svg>
+            Imprimir
+          </button>
+        </div>
+
+        <p id="specs-form-status" role="status" aria-live="polite" class="px-6 pb-6 text-sm md:px-10"></p>
+      </form>
+    </div>
+  </section>
+
+  <div class="print:hidden">
+    <Footer />
+  </div>
+</Layout>
+
+<style is:global>
+  @media print {
+    @page {
+      margin: 10mm 12mm;
+    }
+    body {
+      font-size: 11px;
+    }
+    #specs-form label {
+      margin-bottom: 0.15rem !important;
+      font-size: 11px !important;
+    }
+    #specs-form input,
+    #specs-form textarea {
+      padding: 0.3rem 0.5rem !important;
+      font-size: 11px !important;
+    }
+    #specs-form textarea {
+      min-height: 2.5rem !important;
+    }
+    #specs-form .py-6 {
+      padding-top: 0.4rem !important;
+      padding-bottom: 0.4rem !important;
+    }
+    h2 {
+      font-size: 16px !important;
+      margin-bottom: 0.25rem !important;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('specs-form') as HTMLFormElement | null;
+  const printBtn = document.getElementById('specs-print-btn') as HTMLButtonElement | null;
+  printBtn?.addEventListener('click', () => window.print());
+  const btn = document.getElementById('specs-submit-btn') as HTMLButtonElement | null;
+  const status = document.getElementById('specs-form-status') as HTMLParagraphElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!btn || !status) return;
+
+    btn.disabled = true;
+    status.className = 'px-6 pb-6 text-sm text-brand-900/70 md:px-10';
+    status.textContent = 'Enviando...';
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('/formulario-especificaciones.php', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        status.className = 'px-6 pb-6 text-sm text-green-700 md:px-10';
+        status.textContent = data.mensaje || '¡Formulario enviado correctamente!';
+        form.reset();
+      } else {
+        status.className = 'px-6 pb-6 text-sm text-red-600 md:px-10';
+        status.textContent = data.error || 'Ocurrió un error. Intenta nuevamente.';
+      }
+    } catch (err) {
+      status.className = 'px-6 pb-6 text-sm text-red-600 md:px-10';
+      status.textContent = 'No se pudo conectar con el servidor. Intenta más tarde.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>

@@ -8,6 +8,7 @@ import ContactSection from '../../components/ContactSection.astro';
 import Footer from '../../components/Footer.astro';
 import { getServices, getContactInfo } from '../../lib/wp';
 import type { WPService } from '../../lib/wp';
+import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
   const services = await getServices();
@@ -34,13 +35,13 @@ const seo = {
 
 <Layout seo={seo}>
   <Header />
-  <PageBanner eyebrow="Servicios" title={service.title} description={service.excerpt} image={service.image} />
+  <PageBanner eyebrow="Servicios" title={service.title} description={service.excerpt} image={service.image && withBase(service.image)} />
 
   <section class="mx-auto max-w-[1400px] px-6 py-16">
     <div class="grid gap-10 md:grid-cols-[42%_1fr] md:items-start">
       {service.image && (
         <img
-          src={service.image}
+          src={withBase(service.image)}
           alt={service.title}
           class="h-80 w-full rounded-2xl object-cover shadow-lg md:sticky md:top-24 md:h-[520px]"
         />
@@ -50,7 +51,7 @@ const seo = {
           {(service.content ?? [service.excerpt]).map((p) => <p>{p}</p>)}
         </div>
         <a
-          href="/contacto"
+          href={withBase('/contacto')}
           class="mt-4 inline-block rounded-full bg-brand-accent px-7 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-brand-700"
         >
           Consultar por este servicio
@@ -66,7 +67,7 @@ const seo = {
     <p class="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">Otros servicios</p>
     <div class="grid gap-6 sm:grid-cols-3">
       {otherServices.map((s) => (
-        <a href={`/servicios/${s.slug}`} class="group rounded-xl border border-brand-900/10 p-6 transition hover:border-brand-accent hover:shadow-md">
+        <a href={withBase(`/servicios/${s.slug}`)} class="group rounded-xl border border-brand-900/10 p-6 transition hover:border-brand-accent hover:shadow-md">
           <h3 class="text-base font-semibold text-brand-900 group-hover:text-brand-accent">{s.title}</h3>
           <p class="mt-2 text-sm text-brand-900/60">{s.excerpt}</p>
         </a>

@@ -1,5 +1,6 @@
 ---
 import { fallbackSlides } from '../content/fallback';
+import { withBase } from '../lib/url';
 ---
 
 <section class="relative h-[560px] overflow-hidden bg-brand-900 text-white md:h-[640px]" id="hero-slider">
@@ -9,7 +10,7 @@ import { fallbackSlides } from '../content/fallback';
       class:list={[i === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0']}
       data-index={i}
     >
-      <img src={slide.image} alt={slide.title} class="absolute inset-0 h-full w-full object-cover" style={i === 2 ? "object-position: 50% 15%;" : "object-position: 50% 50%;"} />
+      <img src={withBase(slide.image)} alt={slide.title} class="absolute inset-0 h-full w-full object-cover" style={i === 2 ? "object-position: 50% 15%;" : "object-position: 50% 50%;"} />
       <div class="absolute inset-0 bg-gradient-to-r from-brand-900/50 via-brand-900/25 to-transparent"></div>
       <div class="relative mx-auto flex h-full max-w-[1400px] items-center px-6">
         <div class="max-w-xl">
@@ -17,7 +18,7 @@ import { fallbackSlides } from '../content/fallback';
           <p class="hero-anim mt-5 inline-block bg-black/30 px-1 text-base text-white/90 md:text-lg" style="animation-delay: 0.35s;">{slide.text}</p>
           <div class="hero-anim mt-8" style="animation-delay: 0.55s;">
             <a
-              href={slide.href}
+              href={withBase(slide.href)}
               class="inline-block bg-brand-logo-blue px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-brand-700"
             >
               {slide.cta}

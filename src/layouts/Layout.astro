@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { WPSeoMeta } from '../lib/wp';
+import { withBase } from '../lib/url';
 
 interface Props {
   seo: WPSeoMeta;
@@ -15,7 +16,7 @@ const canonical = seo.canonical ?? new URL(Astro.url.pathname, Astro.site).toStr
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href={withBase('/favicon.png')} />
 
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />

@@ -1,5 +1,6 @@
 ---
 import type { WPService } from '../lib/wp';
+import { withBase } from '../lib/url';
 
 interface Props {
   services: WPService[];
@@ -16,13 +17,13 @@ const { services } = Astro.props;
   <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
     {services.map((service, i) => (
       <a
-        href={`/servicios/${service.slug}`}
+        href={withBase(`/servicios/${service.slug}`)}
         class="group block overflow-hidden rounded-2xl border border-brand-900/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
       >
         {service.image && (
           <div class="relative h-48 w-full overflow-hidden">
             <img
-              src={service.image}
+              src={withBase(service.image)}
               alt={service.title}
               class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
               loading="lazy"

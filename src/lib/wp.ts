@@ -25,6 +25,12 @@ export interface WPService {
   order?: number;
 }
 
+export interface WPContactPerson {
+  name: string;
+  email: string;
+  phone: string;
+}
+
 export interface WPContactInfo {
   phone: string;
   whatsapp?: string;
@@ -34,6 +40,7 @@ export interface WPContactInfo {
   region: string;
   phoneSecondary?: string;
   socials: { label: string; url: string }[];
+  people?: WPContactPerson[];
 }
 
 export interface WPSeoMeta {
