@@ -5,7 +5,7 @@
  * Configurado para pruebas a: codigoraul@gmail.com
  */
 
-$destinatario   = "codigoraul@gmail.com"; // cambiar a info@emcl.cl / leonel.cortes@emcl.cl cuando esté validado
+$destinatario   = "contacto@emcl.cl, codigoraul@gmail.com";
 $asuntoPrefijo  = "[EMCL - Solicitud RG-001]";
 $emailRemitente = "no-reply@emcl.cl";
 
@@ -78,33 +78,49 @@ $emailLimpio = filter_var($email, FILTER_SANITIZE_EMAIL);
 
 $asunto = $asuntoPrefijo . " - " . $cliente;
 
-$cuerpo  = "Nueva solicitud de especificaciones (RG-001) recibida desde el sitio web.\n\n";
-$cuerpo .= "1. Cliente: {$cliente}\n";
-$cuerpo .= "2. Contacto Cliente: {$contactoCliente}\n";
-$cuerpo .= "3. Digestión: {$digestion}\n";
-$cuerpo .= "4. Determinación Final: " . (empty($determinacion) ? "-" : implode(", ", $determinacion)) . "\n";
-$cuerpo .= "5. Enviar protocolos de análisis: {$enviarProtocolos}\n";
-$cuerpo .= "6. Granulometría final (#Ty): {$granulometria}\n";
-$cuerpo .= "7. Envasado final: " . (empty($envasado) ? "-" : implode(", ", $envasado));
-if ($envasadoOtro !== "") $cuerpo .= " (Otro: {$envasadoOtro})";
-$cuerpo .= "\n   Sellado: " . (empty($sellado) ? "-" : implode(", ", $sellado));
-if ($selladoOtro !== "") $cuerpo .= " (Otro: {$selladoOtro})";
-$cuerpo .= "\n   Producto final envasado: {$productoEnvasado}\n";
-$cuerpo .= "8. N° Laboratorios Participantes: {$numLaboratorios} (" . (empty($laboratorios) ? "-" : implode(", ", $laboratorios)) . ")\n";
-$cuerpo .= "9. N° Réplicas por Laboratorio: {$numReplicas}\n";
-$cuerpo .= "10. Disposición Final: " . (empty($disposicion) ? "-" : implode(", ", $disposicion));
-if ($disposicionOtro !== "") $cuerpo .= " (Especificar: {$disposicionOtro})";
-$cuerpo .= "\n11. Transporte: {$transporte}";
-if ($transporteDetalle !== "") $cuerpo .= " (Detalle: {$transporteDetalle})";
-$cuerpo .= "\n12. Devolución del MR: {$devolucionMr}";
-if ($devolucionMrDetalle !== "") $cuerpo .= " (Detalle: {$devolucionMrDetalle})";
-$cuerpo .= "\n13. Otros Requisitos:\n{$otrosRequisitos}\n";
-$cuerpo .= "\nCorreo de contacto del cliente: {$emailLimpio}\n";
-$cuerpo .= "\n---\nEnviado el " . date("d-m-Y H:i:s") . " desde IP " . $_SERVER["REMOTE_ADDR"];
+function fila($label, $valor) {
+    return "<p style=\"margin:0 0 10px;\"><strong>{$label}</strong><br>" . nl2br($valor) . "</p>";
+}
+
+$envasadoTexto = (empty($envasado) ? "-" : implode(", ", $envasado));
+if ($envasadoOtro !== "") $envasadoTexto .= " (Otro: {$envasadoOtro})";
+
+$selladoTexto = (empty($sellado) ? "-" : implode(", ", $sellado));
+if ($selladoOtro !== "") $selladoTexto .= " (Otro: {$selladoOtro})";
+
+$disposicionTexto = (empty($disposicion) ? "-" : implode(", ", $disposicion));
+if ($disposicionOtro !== "") $disposicionTexto .= " (Especificar: {$disposicionOtro})";
+
+$transporteTexto = $transporte;
+if ($transporteDetalle !== "") $transporteTexto .= " (Detalle: {$transporteDetalle})";
+
+$devolucionMrTexto = $devolucionMr;
+if ($devolucionMrDetalle !== "") $devolucionMrTexto .= " (Detalle: {$devolucionMrDetalle})";
+
+$cuerpo  = "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1a1a1a;\">";
+$cuerpo .= "<p>Nueva solicitud de especificaciones (RG-001) recibida desde el sitio web.</p><hr style=\"border:none;border-top:1px solid #ddd;margin:14px 0;\">";
+$cuerpo .= fila("1. Cliente:", $cliente);
+$cuerpo .= fila("2. Contacto Cliente:", $contactoCliente);
+$cuerpo .= fila("3. Digestión:", $digestion);
+$cuerpo .= fila("4. Determinación Final:", empty($determinacion) ? "-" : implode(", ", $determinacion));
+$cuerpo .= fila("5. Enviar protocolos de análisis:", $enviarProtocolos);
+$cuerpo .= fila("6. Granulometría final (#Ty):", $granulometria);
+$cuerpo .= fila("7. Envasado final:", $envasadoTexto . "<br>Sellado: " . $selladoTexto . "<br>Producto final envasado: " . $productoEnvasado);
+$cuerpo .= fila("8. N° Laboratorios Participantes:", $numLaboratorios . " (" . (empty($laboratorios) ? "-" : implode(", ", $laboratorios)) . ")");
+$cuerpo .= fila("9. N° Réplicas por Laboratorio:", $numReplicas);
+$cuerpo .= fila("10. Disposición Final:", $disposicionTexto);
+$cuerpo .= fila("11. Transporte:", $transporteTexto);
+$cuerpo .= fila("12. Devolución del MR:", $devolucionMrTexto);
+$cuerpo .= fila("13. Otros Requisitos:", $otrosRequisitos !== "" ? $otrosRequisitos : "-");
+$cuerpo .= "<hr style=\"border:none;border-top:1px solid #ddd;margin:14px 0;\">";
+$cuerpo .= fila("Correo de contacto del cliente:", $emailLimpio);
+$cuerpo .= "<p style=\"color:#888;font-size:12px;\">Enviado el " . date("d-m-Y H:i:s") . " desde IP " . $_SERVER["REMOTE_ADDR"] . "</p>";
+$cuerpo .= "</div>";
 
 $headers = "From: " . $asuntoPrefijo . " <{$emailRemitente}>\r\n";
 $headers .= "Reply-To: {$contactoCliente} <{$emailLimpio}>\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
 $enviado = mail($destinatario, $asunto, $cuerpo, $headers);

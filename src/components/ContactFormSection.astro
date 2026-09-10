@@ -1,5 +1,6 @@
 ---
 import type { WPContactInfo } from '../lib/wp';
+import { withBase } from '../lib/url';
 
 interface Props {
   contact: WPContactInfo;
@@ -15,7 +16,7 @@ const { contact } = Astro.props;
         <h2 class="mt-3 text-2xl font-bold text-brand-900 md:text-3xl">Cuéntanos sobre tu proyecto</h2>
         <p class="mt-3 text-sm text-brand-900/60">Completa el formulario y un especialista de EMCL te responderá a la brevedad.</p>
 
-        <form id="contact-form" class="mt-8 space-y-5" method="POST">
+        <form id="contact-form" class="mt-8 space-y-5" method="POST" data-action={withBase('/contacto.php')}>
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
               <label for="nombre" class="mb-1.5 block text-sm font-medium text-brand-900">Nombre</label>
@@ -123,6 +124,7 @@ const { contact } = Astro.props;
             <p class="text-white/60">{contact.region}</p>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </section>
@@ -143,7 +145,7 @@ const { contact } = Astro.props;
     const formData = new FormData(form);
 
     try {
-      const res = await fetch('/contacto.php', {
+      const res = await fetch(form.dataset.action || '/contacto.php', {
         method: 'POST',
         body: formData,
       });

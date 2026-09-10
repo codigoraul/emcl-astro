@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /solicitud-especificaciones
+
+Sitemap: https://emcl.cl/sitemap-index.xml

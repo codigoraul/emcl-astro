@@ -4,11 +4,12 @@ import Header from '../components/Header.astro';
 import PageBanner from '../components/PageBanner.astro';
 import Footer from '../components/Footer.astro';
 import { getSeoMeta } from '../lib/wp';
+import { withBase } from '../lib/url';
 
 const seo = await getSeoMeta('solicitud-especificaciones');
 ---
 
-<Layout seo={seo}>
+<Layout seo={seo} noindex>
   <div class="print:hidden">
     <Header />
     <PageBanner
@@ -24,7 +25,7 @@ const seo = await getSeoMeta('solicitud-especificaciones');
       <h2 class="text-2xl font-bold text-brand-900 md:text-3xl print:mt-0">Formulario General para Generar Cotización</h2>
       <p class="mb-8 mt-2 text-xs uppercase tracking-wide text-brand-900/50">Código RG-001 · Revisión 00</p>
 
-      <form id="specs-form" class="rounded-2xl bg-white shadow-sm print:rounded-none print:shadow-none" novalidate>
+      <form id="specs-form" class="rounded-2xl bg-white shadow-sm print:rounded-none print:shadow-none" novalidate data-action={withBase('/formulario-especificaciones.php')}>
         <div class="divide-y divide-brand-900/10 px-6 md:px-10">
 
           <div class="py-6">
@@ -241,7 +242,7 @@ const seo = await getSeoMeta('solicitud-especificaciones');
     const formData = new FormData(form);
 
     try {
-      const res = await fetch('/formulario-especificaciones.php', {
+      const res = await fetch(form.dataset.action || '/formulario-especificaciones.php', {
         method: 'POST',
         body: formData,
       });

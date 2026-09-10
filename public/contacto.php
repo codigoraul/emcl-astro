@@ -6,7 +6,7 @@
  */
 
 // ---- CONFIGURACIÓN ----
-$destinatario   = "codigoraul@gmail.com"; // cambiar por el correo real del cliente cuando pase a producción
+$destinatario   = "contacto@emcl.cl, codigoraul@gmail.com";
 $asuntoPrefijo  = "[EMCL - Contacto Web]";
 $emailRemitente = "no-reply@emcl.cl"; // usar un correo del mismo dominio que el hosting para evitar spam
 
@@ -65,17 +65,25 @@ $emailLimpio = filter_var($email, FILTER_SANITIZE_EMAIL);
 // ---- CONSTRUCCIÓN DEL CORREO ----
 $asunto = $asuntoPrefijo . " Nuevo mensaje de " . $nombre;
 
-$cuerpo = "Has recibido un nuevo mensaje desde el formulario de contacto del sitio web.\n\n";
-$cuerpo .= "Nombre: {$nombre}\n";
-$cuerpo .= "Correo: {$emailLimpio}\n";
-if ($telefono !== "") $cuerpo .= "Teléfono: {$telefono}\n";
-if ($empresa !== "")  $cuerpo .= "Empresa: {$empresa}\n";
-$cuerpo .= "\nMensaje:\n{$mensaje}\n";
-$cuerpo .= "\n---\nEnviado el " . date("d-m-Y H:i:s") . " desde IP " . $_SERVER["REMOTE_ADDR"];
+function fila($label, $valor) {
+    return "<p style=\"margin:0 0 10px;\"><strong>{$label}</strong><br>" . nl2br($valor) . "</p>";
+}
+
+$cuerpo  = "<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1a1a1a;\">";
+$cuerpo .= "<p>Has recibido un nuevo mensaje desde el formulario de contacto del sitio web.</p><hr style=\"border:none;border-top:1px solid #ddd;margin:14px 0;\">";
+$cuerpo .= fila("Nombre:", $nombre);
+$cuerpo .= fila("Correo:", $emailLimpio);
+if ($telefono !== "") $cuerpo .= fila("Teléfono:", $telefono);
+if ($empresa !== "")  $cuerpo .= fila("Empresa:", $empresa);
+$cuerpo .= fila("Mensaje:", $mensaje);
+$cuerpo .= "<hr style=\"border:none;border-top:1px solid #ddd;margin:14px 0;\">";
+$cuerpo .= "<p style=\"color:#888;font-size:12px;\">Enviado el " . date("d-m-Y H:i:s") . " desde IP " . $_SERVER["REMOTE_ADDR"] . "</p>";
+$cuerpo .= "</div>";
 
 $headers = "From: " . $asuntoPrefijo . " <{$emailRemitente}>\r\n";
 $headers .= "Reply-To: {$nombre} <{$emailLimpio}>\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
 // ---- ENVÍO ----

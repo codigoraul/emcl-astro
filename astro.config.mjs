@@ -7,8 +7,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // TODO: reemplazar por el dominio final antes de desplegar (necesario para sitemap y canonical URLs)
   site: 'https://emcl.cl',
-  // TODO: quitar "base" cuando el sitio se publique en la raíz del dominio
-  base: '/prueba',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

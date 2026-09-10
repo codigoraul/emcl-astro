@@ -5,10 +5,29 @@ import { withBase } from '../lib/url';
 
 interface Props {
   seo: WPSeoMeta;
+  noindex?: boolean;
 }
 
-const { seo } = Astro.props;
+const { seo, noindex = false } = Astro.props;
 const canonical = seo.canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'EMCL - Estándares Mineros Chile',
+  url: 'https://emcl.cl',
+  logo: 'https://emcl.cl/img/logo-emcl-blanco.png',
+  description:
+    'EMCL desarrolla y comercializa Materiales de Referencia Certificados (MRC) para la industria minera chilena.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Parcela 42, El Hinojal',
+    addressLocality: 'La Serena',
+    addressRegion: 'Región de Coquimbo',
+    addressCountry: 'CL',
+  },
+  email: 'contacto@emcl.cl',
+};
 ---
 
 <!doctype html>
@@ -21,6 +40,7 @@ const canonical = seo.canonical ?? new URL(Astro.url.pathname, Astro.site).toStr
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -41,6 +61,9 @@ const canonical = seo.canonical ?? new URL(Astro.url.pathname, Astro.site).toStr
       entrega la API (incluye JSON-LD de Organization, breadcrumbs, etc.) para
       no perder ninguna optimización que Yoast ya calcula.
     -->
+    {!noindex && (
+      <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+    )}
   </head>
   <body class="bg-white text-brand-900 antialiased">
     <slot />
