@@ -60,14 +60,14 @@ export const fallbackServices: WPService[] = [
 ];
 
 export const fallbackContact: WPContactInfo = {
-  phone: '+56 9 9533 3306',
-  whatsapp: '+56995333306',
+  phone: '+56 9 7967 1794',
+  whatsapp: '+56979671794',
   email: 'contacto@emcl.cl',
   address: 'Parcela 42, El Hinojal',
   city: 'La Serena',
   region: 'Región de Coquimbo',
-  // Segundo teléfono visto en el afiche
-  phoneSecondary: '+56 9 7967 1794',
+  // Teléfono secundario (M. Castillo). El principal es el de Marilyn (gerente técnica).
+  phoneSecondary: '+56 9 9533 3306',
   people: [
     { name: 'Marilyn Martín', email: 'marilyn.martin@emcl.cl', phone: '+56 9 7967 1794' },
     { name: 'M. Castillo', email: 'mcastillo@emcl.cl', phone: '+56 9 9533 3306' },
@@ -98,7 +98,7 @@ export const fallbackSeo: Record<string, WPSeoMeta> = {
   },
   contacto: {
     title: 'Contacto | EMCL',
-    description: 'Contáctanos: +56 9 9533 3306 · contacto@emcl.cl · La Serena, Región de Coquimbo.',
+    description: 'Contáctanos: +56 9 7967 1794 · contacto@emcl.cl · La Serena, Región de Coquimbo.',
   },
   proyectos: {
     title: 'Proyectos | EMCL',

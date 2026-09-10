@@ -93,6 +93,21 @@ const { contact } = Astro.props;
 
           <p id="contact-form-status" role="status" aria-live="polite" class="text-sm"></p>
         </form>
+
+        <!-- Acceso destacado para clientes: formulario de especificaciones -->
+        <div class="mt-10 rounded-2xl border border-brand-logo-blue/30 bg-blue-50 p-6 md:p-8">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-logo-blue">¿Ya eres cliente?</p>
+          <h3 class="mt-2 text-xl font-bold text-brand-900 md:text-2xl">Formulario de Especificaciones</h3>
+          <p class="mt-2 text-sm text-brand-900/60">
+            Completa las especificaciones técnicas de tu solicitud de materiales de referencia certificados.
+          </p>
+          <a
+            href={withBase('/solicitud-especificaciones')}
+            class="mt-5 inline-block rounded-full bg-brand-900 px-8 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-brand-accent"
+          >
+            Ir al formulario de especificaciones
+          </a>
+        </div>
       </div>
 
       <div class="bg-brand-900 p-8 text-white md:p-12">
