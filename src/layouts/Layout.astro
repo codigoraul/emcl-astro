@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import type { WPSeoMeta } from '../lib/wp';
 import { withBase } from '../lib/url';
+import ChatWidget from '../components/ChatWidget.astro';
 
 interface Props {
   seo: WPSeoMeta;
@@ -18,7 +19,7 @@ const organizationJsonLd = {
   url: 'https://emcl.cl',
   logo: 'https://emcl.cl/img/logo-emcl-blanco.png',
   description:
-    'EMCL desarrolla y comercializa Materiales de Referencia Certificados (MRC) para la industria minera chilena.',
+    'EMCL desarrolla y comercializa Materiales de Referencia (MRC) para la industria minera chilena.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Parcela 42, El Hinojal',
@@ -67,5 +68,7 @@ const organizationJsonLd = {
   </head>
   <body class="bg-white text-brand-900 antialiased">
     <slot />
+    <!-- Chat con IA (Chatia / chatbotia.cl), abajo a la izquierda. Backend: public/chat.php + chat-prompt.php -->
+    <ChatWidget />
   </body>
 </html>

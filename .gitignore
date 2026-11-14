@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Chat IA (chatbotia.cl): la key se sube a mano por FTP, no va al repo
+public/gemini-key.php
+public/chat-data/

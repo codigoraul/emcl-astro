@@ -9,29 +9,15 @@ export const fallbackServices: WPService[] = [
   {
     id: 'crms',
     slug: 'materiales-de-referencia-certificados',
-    title: 'Materiales de Referencia Certificados (MRC)',
+    title: 'Materiales de Referencia (MRC)',
     excerpt:
-      'Desarrollo y suministro de Materiales de Referencia Certificados para el sector minero chileno.',
+      'Desarrollo y suministro de Materiales de Referencia para el sector minero chileno.',
     image: '/img/servicios/crms.jpg',
     order: 1,
     content: [
-      'Somos especialistas en el desarrollo y suministro de Materiales de Referencia Certificados (MRC) para el sector minero chileno, con trazabilidad metrológica al Sistema Internacional (SI) y cumplimiento de la Norma ISO 17034.',
+      'Somos especialistas en el desarrollo y suministro de Materiales de Referencia (MRC) para el sector minero chileno, con trazabilidad metrológica al Sistema Internacional (SI) y cumplimiento de la Norma ISO 17034.',
       'Nuestros MRC respaldan análisis confiables de cobre, litio, oro y otros metales críticos, con procesos de caracterización, evaluación estadística y certificación que garantizan valores de referencia precisos y su incertidumbre asociada.',
       'Ideal para laboratorios de exploración, operación minera y control de calidad que necesitan validar sus métodos analíticos frente a un estándar confiable.',
-    ],
-  },
-  {
-    id: 'asesoria',
-    slug: 'asesoria-experta-soporte-cientifico',
-    title: 'Asesoría Experta y Soporte Científico',
-    excerpt:
-      'La experiencia y el conocimiento necesario para que su equipo logre la máxima eficiencia y precisión.',
-    image: '/img/servicios/asesoria.jpg',
-    order: 2,
-    content: [
-      'En EMCL no solo suministramos materiales; ofrecemos la experiencia y el conocimiento científico necesario para que su equipo logre la máxima eficiencia y precisión en sus procesos analíticos.',
-      'Acompañamos a laboratorios de exploración, compañías mineras y laboratorios químico-metalúrgicos en el diseño e implementación de programas de aseguramiento y control de calidad (QA/QC), validación de métodos y buenas prácticas metrológicas.',
-      'Nuestro soporte técnico ayuda a reducir errores analíticos, mejorar la trazabilidad de los resultados y cumplir con los requisitos de organismos acreditadores.',
     ],
   },
   {
@@ -41,7 +27,7 @@ export const fallbackServices: WPService[] = [
     excerpt:
       'Soluciones personalizadas y adaptadas a las necesidades específicas del mercado de metales críticos.',
     image: '/img/servicios/metales-criticos.jpg',
-    order: 3,
+    order: 2,
     content: [
       'EMCL se posiciona como un proveedor esencial en el mercado de metales críticos de Chile, ofreciendo soluciones personalizadas y adaptadas a las necesidades específicas de cada cliente.',
       'Desarrollamos materiales de referencia y soporte técnico especializado para litio, cobre y otros metales estratégicos, ayudando a las empresas mineras a reducir riesgos y asegurar la calidad de sus procesos frente a la creciente demanda internacional.',
@@ -55,7 +41,7 @@ export const fallbackServices: WPService[] = [
     excerpt:
       'Control externo de la calidad: permite a los laboratorios demostrar la confiabilidad y comparabilidad de sus resultados.',
     image: '/img/servicios/interlab.jpg',
-    order: 4,
+    order: 3,
   },
 ];
 
@@ -82,19 +68,19 @@ export const fallbackContact: WPContactInfo = {
 
 export const fallbackSeo: Record<string, WPSeoMeta> = {
   home: {
-    title: 'EMCL | Materiales de Referencia Certificados para la Minería Chilena',
+    title: 'EMCL | Materiales de Referencia para la Minería Chilena',
     description:
-      'EMCL — Estándares Mineros Chile desarrolla y comercializa Materiales de Referencia Certificados (MRC), con trazabilidad metrológica y cumplimiento de normas internacionales. La precisión de hoy es la competitividad de mañana.',
+      'EMCL — Estándares Mineros Chile desarrolla y comercializa Materiales de Referencia (MRC), con trazabilidad metrológica y cumplimiento de normas internacionales. La precisión de hoy es la competitividad de mañana.',
   },
   empresa: {
     title: 'Empresa | EMCL — Estándares Mineros Chile',
     description:
-      'Conoce EMCL (Estándares Mineros Chile), especializada en comercialización y elaboración de materiales de referencia certificados para la industria minera chilena.',
+      'Conoce EMCL (Estándares Mineros Chile), especializada en comercialización y elaboración de materiales de referencia para la industria minera chilena.',
   },
   servicios: {
     title: 'Servicios | EMCL',
     description:
-      'Servicios de EMCL: Materiales de Referencia Certificados, asesoría experta y soluciones para metales críticos.',
+      'Servicios de EMCL: Materiales de Referencia, soluciones para metales críticos y ensayos interlaboratorios.',
   },
   contacto: {
     title: 'Contacto | EMCL',
@@ -103,7 +89,7 @@ export const fallbackSeo: Record<string, WPSeoMeta> = {
   proyectos: {
     title: 'Proyectos | EMCL',
     description:
-      'Conoce cómo EMCL ha apoyado a empresas mineras de Latinoamérica con materiales de referencia certificados y ensayos de comparación interlaboratorios.',
+      'Conoce cómo EMCL ha apoyado a empresas mineras de Latinoamérica con materiales de referencia y ensayos de comparación interlaboratorios.',
   },
 };
 
@@ -115,7 +101,7 @@ export const siteContent = {
   },
   quienesSomos: {
     heading: 'Quiénes Somos',
-    body: 'Especializada en comercialización y elaboración de materiales de referencia certificados para la industria minera chilena.',
+    body: 'Especializada en comercialización y elaboración de materiales de referencia para la industria minera chilena.',
   },
   mision: {
     heading: 'Misión',
@@ -357,7 +343,7 @@ export const fallbackSlides = [
   },
   {
     image: '/img/slider/slide-2.webp',
-    title: 'Materiales de Referencia Certificados (MRC) para la Minería Chilena',
+    title: 'Materiales de Referencia (MRC) para la Minería Chilena',
     text: 'Suministro de MRC para cobre, litio, oro y otros metales críticos. Garantizamos precisión y baja incertidumbre para sus análisis.',
     cta: 'Saber más',
     href: '/servicios',
@@ -380,7 +366,7 @@ export const fallbackCompanyIntro = {
   heading: 'Nuestra Empresa',
   image: '/img/nuestra-empresa.jpg',
   paragraphs: [
-    'EMCL es una empresa especializada en la comercialización y elaboración de materiales de referencia certificados (MRC) para la industria minera chilena. Nuestro propósito es ofrecer soluciones científicas y técnicas de primer nivel que garanticen la calidad, precisión y eficiencia en el sector minero.',
+    'EMCL es una empresa especializada en la comercialización y elaboración de materiales de referencia (MRC) para la industria minera chilena. Nuestro propósito es ofrecer soluciones científicas y técnicas de primer nivel que garanticen la calidad, precisión y eficiencia en el sector minero.',
     'Somos un socio estratégico dedicado a impulsar la competitividad y sostenibilidad de nuestros clientes. Brindamos aseguramiento y control de calidad (QA/QC) a lo largo de toda la cadena de valor minera:',
   ],
   audiences: [

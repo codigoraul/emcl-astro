@@ -12,7 +12,7 @@ const { eyebrow, heading, image, paragraphs, audiences } = fallbackCompanyIntro;
       <h2 class="mt-3 text-3xl font-bold text-brand-900 md:text-4xl">{heading}</h2>
       <div class="mt-5 space-y-4 text-brand-900/80">
         {paragraphs.map((p) => (
-          <p set:html={p.replace(/materiales de referencia certificados/i, '<strong>materiales de referencia certificados</strong>')} />
+          <p set:html={p.replace(/materiales de referencia/i, '<strong>materiales de referencia</strong>')} />
         ))}
       </div>
       <ul class="mt-5 space-y-2">

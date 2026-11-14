@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "node node_modules/astro/bin/astro.mjs dev",
     "build": "node node_modules/astro/bin/astro.mjs build",
+    "postbuild": "find dist -type d -exec chmod 755 {} + && find dist -type f -exec chmod 644 {} +",
+    "zip": "npm run build && rm -f dist.zip && cd dist && zip -rX ../dist.zip . -x '.DS_Store' '__MACOSX/*'",
     "preview": "node node_modules/astro/bin/astro.mjs preview",
     "astro": "node node_modules/astro/bin/astro.mjs"
   },

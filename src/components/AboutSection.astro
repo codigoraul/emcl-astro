@@ -13,7 +13,7 @@ const cards = [purpose, mission, vision, reach];
 
       <div class="mt-5 space-y-4 text-brand-900/80">
         {paragraphs.map((p) => (
-          <p set:html={p.replace(/materiales de referencia certificados/i, '<strong>materiales de referencia certificados</strong>')} />
+          <p set:html={p.replace(/materiales de referencia/i, '<strong>materiales de referencia</strong>')} />
         ))}
       </div>
 
