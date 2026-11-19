@@ -39,5 +39,5 @@ jobs:
           set net:max-retries 2
           debug 3
           open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\"
-          mirror -R --verbose ./dist/ ./prueba/
+          mirror -R --verbose ./dist/ ./
           "
